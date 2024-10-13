@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Search Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 24px;
+            outline: none;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 24px;
+            background-color: #4285F4;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #357ae8;
+        }
+        .links {
+            margin-top: 20px;
+            max-width: 300px;
+            text-align: left;
+        }
+        .links a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #4285F4;
+        }
+        .links a.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Search Page</h1>
+
+    <input type="text" id="searchInput" placeholder="Search..." oninput="filterLinks()">
+
+    <div class="links" id="linksContainer">
+        <h2>Links to Other Files</h2>
+        <a href="data.html">First Steps.</a>
+    </div>
+
+    <script>
+        function filterLinks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const linksContainer = document.getElementById('linksContainer');
+            const links = linksContainer.getElementsByTagName('a');
+
+            for (let i = 0; i < links.length; i++) {
+                const linkText = links[i].textContent.toLowerCase();
+                links[i].classList.toggle('hidden', !linkText.includes(input));
+            }
+        }
+    </script>
+
+</body>
+</html>
+

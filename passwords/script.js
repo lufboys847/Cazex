@@ -1,4 +1,4 @@
-let userPassword = '';
+let userPassword = 'massword';
 
 // Function to set the user's master password
 async function setUserPassword(password) {

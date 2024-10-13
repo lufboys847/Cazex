@@ -1,4 +1,4 @@
-let userPassword = 'wordpass';
+let userPassword = '';
 
 // Function to set the user's master password
 async function setUserPassword(password) {
@@ -121,14 +121,22 @@ async function deletePassword(index) {
     await displayPasswords();
 }
 
-// Prompt the user for their master password on load
+// Initialize the application
 async function init() {
     const passwordPrompt = prompt("Enter a master password:");
     if (passwordPrompt) {
         await setUserPassword(passwordPrompt);
-        await displayPasswords();
+
+        // Validate the entered password with a temporary test
+        const testKey = await getKey(crypto.getRandomValues(new Uint8Array(16)));
+        if (!testKey) {
+            alert("Incorrect master password. Closing the tab.");
+            window.close(); // Attempt to close the tab
+        } else {
+            await displayPasswords();
+        }
     }
 }
 
-// Initialize the application
+// Run the initialization function
 init();
